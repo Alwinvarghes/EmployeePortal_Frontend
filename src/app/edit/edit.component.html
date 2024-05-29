@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="row">
+    <div class="col-md-3">
+        <div class="d-flex align-items-center flex-column" style="background-image: linear-gradient(to bottom,rgb(103, 206, 175),rgb(219, 243, 231)); height: 89vh; width: 250px;" >
+            <a routerLink="/home" class="text-light mt-5 fs-4" style="text-decoration: none;">Home</a>
+            <a routerLink="/employee" class="text-light mt-4 fs-4" style="text-decoration: none;">Employees</a>
+         </div>
+    </div>
+    <div class="col-md-7">
+     <h3 class="text-center mt-5 text-primary">Edit Employee Details</h3>
+     <div class="d-flex justify-content-center align-items-center w-100">
+       <div class="shadow w-100">
+         <form class=" mt-5 p-4">
+            <div class="mb-3">
+              <input #empId="ngModel" type="text" placeholder="Employee Id" class="form-control" [(ngModel)]="employees.id" name="id" required pattern="[0-9]*">
+              <span *ngIf="empId.invalid" class="text-danger">*Invalid Input</span>
+            </div>
+            <div class="mb-3">
+                <input type="text" placeholder="Employee name" class="form-control" [(ngModel)]="employees.username" name="username" #empName="ngModel" required pattern="^[a-zA-Z ]{3,}$">
+                <span *ngIf="empName.invalid" class="text-danger">*Invalid Input</span>
+              </div>
+              <div class="mb-3">
+                <input type="text" #empEmail="ngModel" placeholder="Email" class="form-control" [(ngModel)]="employees.email" name="email" required email>
+                <span *ngIf="empEmail.invalid" class="text-danger">*Invalid Input</span>
+              </div>
+              <select class="form-select" aria-label="Default select example" [(ngModel)]="employees.status" name="status" required #empStatus="ngModel" >
+                <span *ngIf="empStatus.invalid" class="text-danger">*Invalid Input</span>
+                <option selected></option>
+                <option value="1">Active</option>
+                <option value="2">inactive</option>
+              </select>
+             
+              <div class="mb-3 mt-4">
+               <button class="btn btn-warning" (click)="cancelEdit(employees.id)">cancel</button>
+               <button type="submit" (click)="updateEmployee(employees.id)" class="btn btn-success ms-3">save</button>
+              </div>
+         </form>
+       </div>
+     </div>
+    </div>
+    <div class="col-md-2"></div>
+ </div>
+
